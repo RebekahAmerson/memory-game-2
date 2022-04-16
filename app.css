@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image:
+        linear-gradient(to bottom, rgba(24, 127, 224, 0.52), rgba(117, 19, 93, 0.73)),
+        url(images/spiration-light.webp);
+    background-size: cover;
+    height: 100vh;
+}
+
+header {
+    margin: 1em auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+.score-panel {
+    width: 700px;
+    margin: 1em auto;
+    font-size: 1.5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.deck {
+    margin: 0 auto;
+    background-color: rgb(153, 65, 131, .55);
+    border: 10px double rgb(117, 19, 93);
+    width: 700px;
+    height: 700px;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.card {
+    width: 125px;
+    height: 125px;
+    background-color: rgb(140, 185, 228);
+    font-size: 3em;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 5px;
+    border: 1px solid black;
+}
