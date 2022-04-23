@@ -13,6 +13,7 @@ for (let i = 0; i < cardNode.length; i++) {
 
 
 function playGame(event) {
+    console.log('click');
     checkForMatch(event);
     checkForWin();
 }
@@ -36,6 +37,7 @@ function doesMatch() {
             //Adds matched class
             for (card of flippedCards) {
                 card.classList.add('matched');
+                card.removeEventListener('click', playGame);
             }
             //Resets flipped cards array
             flippedCards.splice(0, 2);
