@@ -14,24 +14,29 @@ for (let i = 0; i < cardNode.length; i++) {
 function checkForMatch(event) {
 
     if (flippedCards.length < 2) {
-        console.log(event.target.querySelector('i').classList);
-        flippedCards.push(event.target.querySelector('i').classList);
+        event.target.classList.add('flipped');
+        flippedCards.push(event.target);
+        console.log(event.target.querySelector('i').value);
     }
+
     doesMatch();
 }
-
+//checks 2 cards for match
 function doesMatch() {
     if (flippedCards.length === 2) {
-        if (flippedCards[0].value === flippedCards[1].value) {
+        if (flippedCards[0].querySelector('i').classList.value === flippedCards[1].querySelector('i').classList.value) {
             console.log('congrats');
             matchedCards.push(flippedCards);
             flippedCards.splice(0, 2);
             console.log(flippedCards);
         } else {
             console.log('sorry');
+            for (card of flippedCards) {
+                card.classList.remove('flipped');
+            }
+
             flippedCards.splice(0, 2);
             console.log(flippedCards);
         }
     }
-
 }
