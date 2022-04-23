@@ -14,6 +14,7 @@ for (let i = 0; i < cardNode.length; i++) {
 
 function playGame(event) {
     checkForMatch(event);
+    checkForWin();
 }
 
 //Add clicked cards to array. When 2 cards present, check for match.
@@ -22,7 +23,6 @@ function checkForMatch(event) {
     if (flippedCards.length < 2) {
         event.target.classList.add('flipped');
         flippedCards.push(event.target);
-        console.log(event.target.querySelector('i').value);
     }
 
     doesMatch();
@@ -40,7 +40,7 @@ function doesMatch() {
             //Resets flipped cards array
             flippedCards.splice(0, 2);
             moveCount++;
-            console.log(moveCount);
+            console.log(matchedCards.length);
         } else {
             console.log('sorry');
             //TODO: add delay
@@ -52,5 +52,11 @@ function doesMatch() {
             moveCount++;
             console.log(moveCount);
         }
+    }
+}
+
+function checkForWin() {
+    if (matchedCards.length === 8) {
+        console.log('you won');
     }
 }
