@@ -27,6 +27,11 @@ function doesMatch() {
         if (flippedCards[0].querySelector('i').classList.value === flippedCards[1].querySelector('i').classList.value) {
             console.log('congrats');
             matchedCards.push(flippedCards);
+
+            for (card of flippedCards) {
+                card.classList.add('matched');
+            }
+
             flippedCards.splice(0, 2);
             console.log(flippedCards);
         } else {
