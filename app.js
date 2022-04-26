@@ -2,6 +2,7 @@ const cards = []; //array to hold all types of cards for shuffle
 
 let cardNode = document.querySelectorAll('.card'); //Node of all cards
 let moveCounter = document.querySelector('.moves'); //Span to show move count
+let stars = document.querySelectorAll('.fa-star'); //Node of all stars
 let moveCount = 0;
 
 const flippedCards = []; //array for flipped over cards to compare if matched
@@ -59,7 +60,7 @@ function doesMatch() {
             moveCount++;
         }
         moveCounter.innerText = moveCount;
-
+        checkStars();
     }
 }
 
@@ -69,3 +70,12 @@ function checkForWin() {
     }
 }
 
+function checkStars() {
+    if (moveCount >= 15) {
+        stars[1].classList.remove('fa-solid');
+        stars[1].classList.add('fa-regular');
+    } else if (moveCount >= 10) {
+        stars[2].classList.remove('fa-solid');
+        stars[2].classList.add('fa-regular');
+    }
+}
