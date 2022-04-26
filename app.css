@@ -55,10 +55,14 @@ h1 {
     box-shadow: 2px 2px 10px black;
     border-radius: 5px;
     border: 1px solid black;
+    transition: transform .5s, font-size 0.1s;
+    transition-delay: 0s, .26s;
 }
 
 .flipped {
     font-size: 3em;
+    transition: all 5sec;
+    transform: rotateY(180deg);
 }
 
 .matched {
