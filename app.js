@@ -45,9 +45,12 @@ function doesMatch() {
             console.log(matchedCards.length);
         } else {
             console.log('sorry');
+            for (card of flippedCards) {
+                card.classList.add('not-matched');
+            }
             //TODO: add delay
             for (card of flippedCards) {
-                card.classList.remove('flipped');
+                card.classList.remove('flipped', 'not-matched');
             }
             //Resets flipped cards array
             flippedCards.splice(0, 2);
