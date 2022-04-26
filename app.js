@@ -1,7 +1,9 @@
 const cards = []; //array to hold all types of cards for shuffle 
 
 let cardNode = document.querySelectorAll('.card'); //Node of all cards
+let moveCounter = document.querySelector('.moves'); //Span to show move count
 let moveCount = 0;
+
 const flippedCards = []; //array for flipped over cards to compare if matched
 const matchedCards = []; //array for cards that have been matched used to check for win condition
 
@@ -55,8 +57,9 @@ function doesMatch() {
             //Resets flipped cards array
             flippedCards.splice(0, 2);
             moveCount++;
-            console.log(moveCount);
         }
+        moveCounter.innerText = moveCount;
+
     }
 }
 
@@ -65,3 +68,4 @@ function checkForWin() {
         console.log('you won');
     }
 }
+
