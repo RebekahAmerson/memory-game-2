@@ -61,7 +61,6 @@ h1 {
 
 .flipped {
     font-size: 3em;
-    transition: all 5sec;
     transform: rotateY(180deg);
 }
 
@@ -72,4 +71,15 @@ h1 {
 
 .matched {
     background-color: rgb(117, 19, 93);
+    animation: 1s grow;
+}
+
+
+
+/* Keyframes */
+
+@keyframes grow {
+    50% {
+        transform: scale(1.2) rotateY(180deg);
+    }
 }
