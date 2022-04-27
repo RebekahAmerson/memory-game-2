@@ -47,17 +47,22 @@ function doesMatch() {
             moveCount++;
             console.log(matchedCards.length);
         } else {
-            console.log('sorry');
-            for (card of flippedCards) {
-                card.classList.add('not-matched');
-            }
-            //TODO: add delay
-            for (card of flippedCards) {
-                card.classList.remove('flipped', 'not-matched');
-            }
-            //Resets flipped cards array
-            flippedCards.splice(0, 2);
-            moveCount++;
+            setTimeout(function () {
+                console.log('sorry');
+                for (card of flippedCards) {
+                    card.classList.add('not-matched');
+                }
+                //TODO: add delay
+                setTimeout(function () {
+                    for (card of flippedCards) {
+                        card.classList.remove('flipped', 'not-matched');
+                    }
+                    //Resets flipped cards array
+                    flippedCards.splice(0, 2);
+                    moveCount++;
+
+                }, 1000);
+            }, 800);
         }
         moveCounter.innerText = moveCount;
         checkStars();
