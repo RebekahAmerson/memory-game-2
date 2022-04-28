@@ -24,7 +24,7 @@ function playGame(event) {
 //Add clicked cards to array. When 2 cards present, check for match.
 function checkForMatch(event) {
 
-    if (flippedCards.length < 2) {
+    if (flippedCards.length < 2 && event.target.classList.contains('card') && !event.target.classList.contains('flipped')) {
         event.target.classList.add('flipped');
         flippedCards.push(event.target);
     }
