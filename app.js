@@ -17,22 +17,24 @@ for (let i = 0; i < cardNode.length; i++) {
 
 function playGame(event) {
     console.log('click');
-    checkForMatch(event);
+    flipCard(event);
+    checkForMatch();
+    checkStars();
     checkForWin();
 }
 
 //Add clicked cards to array. When 2 cards present, check for match.
-function checkForMatch(event) {
+function flipCard(event) {
 
     if (flippedCards.length < 2 && event.target.classList.contains('card') && !event.target.classList.contains('flipped')) {
         event.target.classList.add('flipped');
         flippedCards.push(event.target);
     }
 
-    doesMatch();
+    // doesMatch();
 }
 //checks 2 cards for match
-function doesMatch() {
+function checkForMatch() {
     if (flippedCards.length === 2) {
         if (flippedCards[0].querySelector('i').classList.value === flippedCards[1].querySelector('i').classList.value) {
             console.log('congrats');
@@ -68,7 +70,6 @@ function doesMatch() {
             }, 800);
         }
         moveCounter.innerText = moveCount;
-        checkStars();
     }
 }
 
