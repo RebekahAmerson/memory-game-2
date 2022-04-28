@@ -37,22 +37,26 @@ function doesMatch() {
         if (flippedCards[0].querySelector('i').classList.value === flippedCards[1].querySelector('i').classList.value) {
             console.log('congrats');
             matchedCards.push(flippedCards);
-            //Adds matched class
-            for (card of flippedCards) {
-                card.classList.add('matched');
-                card.removeEventListener('click', playGame);
-            }
-            //Resets flipped cards array
-            flippedCards.splice(0, 2);
-            moveCount++;
-            console.log(matchedCards.length);
+            setTimeout(function () {
+                //Adds matched class
+                for (card of flippedCards) {
+                    card.classList.add('matched');
+                    card.removeEventListener('click', playGame);
+                }
+                //Resets flipped cards array
+                flippedCards.splice(0, 2);
+                moveCount++;
+
+            }, 1000);
+
         } else {
             setTimeout(function () {
                 console.log('sorry');
+                //Adds non-matched class
                 for (card of flippedCards) {
                     card.classList.add('not-matched');
                 }
-                //TODO: add delay
+                //Flips cards back over
                 setTimeout(function () {
                     for (card of flippedCards) {
                         card.classList.remove('flipped', 'not-matched');
@@ -60,7 +64,6 @@ function doesMatch() {
                     //Resets flipped cards array
                     flippedCards.splice(0, 2);
                     moveCount++;
-
                 }, 1000);
             }, 800);
         }
