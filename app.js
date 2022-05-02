@@ -83,8 +83,8 @@ function checkStars() {
         stars[1].classList.remove('fa-solid');
         stars[1].classList.add('fa-regular');
     } else if (moveCount >= 10) {
-        stars[2].classList.remove('fa-solid');
-        stars[2].classList.add('fa-regular');
+        stars[0].classList.remove('fa-solid');
+        stars[0].classList.add('fa-regular');
     }
 }
 
