@@ -95,7 +95,6 @@ function setBoard(node, arr) {
 }
 
 function shuffleDeck(arr) {
-    console.log('shuffling');
     const newArr = [...arr];
     // Durstenfeld shuffle
     for (var i = newArr.length - 1; i > 0; i--) {
