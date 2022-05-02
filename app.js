@@ -49,7 +49,7 @@ function checkForMatch() {
                 //Resets flipped cards array
                 flippedCards.splice(0, 2);
                 moveCount++;
-            }, 1000);
+            }, 800);
         } else {
             setTimeout(function () {
                 console.log('sorry');
@@ -65,7 +65,7 @@ function checkForMatch() {
                     //Resets flipped cards array
                     flippedCards.splice(0, 2);
                     moveCount++;
-                }, 1000);
+                }, 800);
             }, 800);
         }
         moveCounter.innerText = moveCount;
