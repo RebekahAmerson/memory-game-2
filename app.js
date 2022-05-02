@@ -1,4 +1,5 @@
-const cards = []; //array to hold all types of cards for shuffle 
+const cards = ['fa-apple-whole', 'fa-fish-fins', 'fa-cat', 'fa-crow', 'fa-dragon', 'fa-otter', 'fa-hand-spock', 'fa-seedling', 'fa-apple-whole', 'fa-fish-fins', 'fa-cat', 'fa-crow', 'fa-dragon', 'fa-otter', 'fa-hand-spock', 'fa-seedling'];
+//array to hold all types of cards for shuffle 
 
 let cardNode = document.querySelectorAll('.card'); //Node of all cards
 let moveCounter = document.querySelector('.moves'); //Span to show move count
@@ -14,6 +15,8 @@ for (let i = 0; i < cardNode.length; i++) {
     cardNode[i].addEventListener('click', playGame);
 }
 
+//Shuffle deck and set board
+setBoard(cardNode, shuffleDeck(cards));
 
 function playGame(event) {
     console.log('click');
@@ -25,14 +28,12 @@ function playGame(event) {
 
 //Add clicked cards to array. When 2 cards present, check for match.
 function flipCard(event) {
-
     if (flippedCards.length < 2 && event.target.classList.contains('card') && !event.target.classList.contains('flipped')) {
         event.target.classList.add('flipped');
         flippedCards.push(event.target);
     }
-
-    // doesMatch();
 }
+
 //checks 2 cards for match
 function checkForMatch() {
     if (flippedCards.length === 2) {
@@ -48,9 +49,7 @@ function checkForMatch() {
                 //Resets flipped cards array
                 flippedCards.splice(0, 2);
                 moveCount++;
-
             }, 1000);
-
         } else {
             setTimeout(function () {
                 console.log('sorry');
@@ -87,4 +86,23 @@ function checkStars() {
         stars[2].classList.remove('fa-solid');
         stars[2].classList.add('fa-regular');
     }
+}
+
+function setBoard(node, arr) {
+    for (let i = 0; i < node.length; i++) {
+        node[i].querySelector('i').classList.add(arr[i]);
+    }
+}
+
+function shuffleDeck(arr) {
+    console.log('shuffling');
+    const newArr = [...arr];
+    // Durstenfeld shuffle
+    for (var i = newArr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = newArr[i];
+        newArr[i] = newArr[j];
+        newArr[j] = temp;
+    }
+    return newArr;
 }
