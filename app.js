@@ -12,7 +12,7 @@ const flippedCards = []; //array for flipped over cards to compare if matched
 const matchedCards = []; //array for cards that have been matched used to check for win condition
 
 
-//Add event listener to all cards.
+//Add event listeners to all cards.
 for (let i = 0; i < cardNode.length; i++) {
     cardNode[i].addEventListener('click', playGame);
     cardNode[i].addEventListener('click', startTimer);
@@ -39,6 +39,7 @@ function flipCard(event) {
 //checks 2 cards for match
 function checkForMatch() {
     if (flippedCards.length === 2) {
+        moveCount++;
         if (flippedCards[0].querySelector('i').classList.value === flippedCards[1].querySelector('i').classList.value) {
             matchedCards.push(flippedCards);
             setTimeout(function () {
@@ -51,7 +52,6 @@ function checkForMatch() {
                 setTimeout(function () {
                     flippedCards.splice(0, 2);
                 }, 500);
-                moveCount++;
             }, 800);
 
         } else {
@@ -69,7 +69,6 @@ function checkForMatch() {
                     setTimeout(function () {
                         flippedCards.splice(0, 2);
                     }, 500);
-                    moveCount++;
                 }, 800);
             }, 800);
 
@@ -116,7 +115,6 @@ function shuffleDeck(arr) {
 }
 
 function startTimer() {
-    console.log('timer');
     for (let i = 0; i < cardNode.length; i++) {
         cardNode[i].removeEventListener('click', startTimer);
     }
