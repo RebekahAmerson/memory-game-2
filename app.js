@@ -4,6 +4,7 @@ const cards = ['fa-apple-whole', 'fa-fish-fins', 'fa-cat', 'fa-crow', 'fa-dragon
 let cardNode = document.querySelectorAll('.card'); //Node of all cards
 let moveCounter = document.querySelector('.moves'); //Span to show move count
 let stars = document.querySelectorAll('.fa-star'); //Node of all stars
+let modal = document.querySelector('.modal');
 let moveCount = 0;
 
 const flippedCards = []; //array for flipped over cards to compare if matched
@@ -19,7 +20,6 @@ for (let i = 0; i < cardNode.length; i++) {
 setBoard(cardNode, shuffleDeck(cards));
 
 function playGame(event) {
-    console.log('click');
     flipCard(event);
     checkForMatch();
     checkStars();
@@ -47,9 +47,11 @@ function checkForMatch() {
                     card.removeEventListener('click', playGame);
                 }
                 //Resets flipped cards array
-                flippedCards.splice(0, 2);
+                //  flippedCards.splice(0, 2);
                 moveCount++;
             }, 800);
+            flippedCards.splice(0, 2);
+
         } else {
             setTimeout(function () {
                 console.log('sorry');
@@ -63,10 +65,12 @@ function checkForMatch() {
                         card.classList.remove('flipped', 'not-matched');
                     }
                     //Resets flipped cards array
-                    flippedCards.splice(0, 2);
+                    // flippedCards.splice(0, 2);
                     moveCount++;
                 }, 800);
             }, 800);
+            flippedCards.splice(0, 2);
+
         }
         moveCounter.innerText = moveCount;
     }
@@ -74,15 +78,18 @@ function checkForMatch() {
 
 function checkForWin() {
     if (matchedCards.length === 8) {
+        setTimeout(function () {
+            modal.classList.add('visible');
+        }, 1800);
         console.log('you won');
     }
 }
 
 function checkStars() {
-    if (moveCount >= 15) {
+    if (moveCount >= 20) {
         stars[1].classList.remove('fa-solid');
         stars[1].classList.add('fa-regular');
-    } else if (moveCount >= 10) {
+    } else if (moveCount >= 14) {
         stars[0].classList.remove('fa-solid');
         stars[0].classList.add('fa-regular');
     }
@@ -105,3 +112,5 @@ function shuffleDeck(arr) {
     }
     return newArr;
 }
+
+
