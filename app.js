@@ -6,6 +6,7 @@ let moveCounter = document.querySelector('.moves'); //Span to show move count
 let stars = document.querySelectorAll('.fa-star'); //Node of all stars
 let modal = document.querySelector('.modal'); //Win Modal
 let timerText = document.querySelectorAll('.timer-text'); //Node for timer
+let modalStars = modal.querySelectorAll('.fa-star');
 let moveCount = 0;
 let timerId;
 
@@ -82,6 +83,7 @@ function checkForMatch() {
 function checkForWin() {
     if (matchedCards.length === 8) {
         clearInterval(timerId);
+        modal.querySelector('.moves').innerText = moveCount;
         setTimeout(function () {
             modal.classList.add('visible');
         }, 1800);
@@ -92,9 +94,13 @@ function checkStars() {
     if (moveCount >= 20) {
         stars[1].classList.remove('fa-solid');
         stars[1].classList.add('fa-regular');
+        stars[4].classList.remove('fa-solid');
+        stars[4].classList.add('fa-regular');
     } else if (moveCount >= 14) {
         stars[0].classList.remove('fa-solid');
         stars[0].classList.add('fa-regular');
+        stars[3].classList.remove('fa-solid');
+        stars[3].classList.add('fa-regular');
     }
 }
 
