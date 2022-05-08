@@ -7,6 +7,7 @@ let stars = document.querySelectorAll('.fa-star'); //Node of all stars
 let modal = document.querySelector('.modal'); //Win Modal
 let timerText = document.querySelectorAll('.timer-text'); //Node for timer
 let moveCount = 0;
+let timerId;
 
 const flippedCards = []; //array for flipped over cards to compare if matched
 const matchedCards = []; //array for cards that have been matched used to check for win condition
@@ -80,6 +81,7 @@ function checkForMatch() {
 
 function checkForWin() {
     if (matchedCards.length === 8) {
+        clearInterval(timerId);
         setTimeout(function () {
             modal.classList.add('visible');
         }, 1800);
@@ -119,7 +121,7 @@ function startTimer() {
         cardNode[i].removeEventListener('click', startTimer);
     }
     let time = 0;
-    let timerId = setInterval(function () {
+    timerId = setInterval(function () {
         time++;
         let seconds = time % 60;
         let minutes = Math.floor(time / 60);
