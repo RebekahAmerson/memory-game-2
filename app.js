@@ -4,7 +4,8 @@ const cards = ['fa-apple-whole', 'fa-fish-fins', 'fa-cat', 'fa-crow', 'fa-dragon
 let cardNode = document.querySelectorAll('.card'); //Node of all cards
 let moveCounter = document.querySelector('.moves'); //Span to show move count
 let stars = document.querySelectorAll('.fa-star'); //Node of all stars
-let modal = document.querySelector('.modal');
+let modal = document.querySelector('.modal'); //Win Modal
+let timerText = document.querySelectorAll('.timer-text'); //Node for timer
 let moveCount = 0;
 
 const flippedCards = []; //array for flipped over cards to compare if matched
@@ -14,6 +15,7 @@ const matchedCards = []; //array for cards that have been matched used to check 
 //Add event listener to all cards.
 for (let i = 0; i < cardNode.length; i++) {
     cardNode[i].addEventListener('click', playGame);
+    cardNode[i].addEventListener('click', startTimer);
 }
 
 //Shuffle deck and set board
@@ -68,7 +70,6 @@ function checkForMatch() {
                         flippedCards.splice(0, 2);
                     }, 500);
                     moveCount++;
-                    console.log('ran unmatched sequence');
                 }, 800);
             }, 800);
 
@@ -114,4 +115,26 @@ function shuffleDeck(arr) {
     return newArr;
 }
 
-
+function startTimer() {
+    console.log('timer');
+    for (let i = 0; i < cardNode.length; i++) {
+        cardNode[i].removeEventListener('click', startTimer);
+    }
+    let time = 0;
+    let timerId = setInterval(function () {
+        time++;
+        let seconds = time % 60;
+        let minutes = Math.floor(time / 60);
+        for (let i = 0; i < timerText.length; i++) {
+            timerText[i].innerText = format(minutes) + ":" + format(seconds);
+        }
+    }, 1000);
+}
+//Format numbers for counter to have leading zero on single digit numbers
+function format(x) {
+    if (x < 10) {
+        return "0" + x;
+    } else {
+        return x;
+    }
+}
