@@ -21,7 +21,6 @@ setBoard(cardNode, shuffleDeck(cards));
 
 function playGame(event) {
     flipCard(event);
-    checkForMatch();
     checkStars();
     checkForWin();
 }
@@ -31,6 +30,7 @@ function flipCard(event) {
     if (flippedCards.length < 2 && event.target.classList.contains('card') && !event.target.classList.contains('flipped')) {
         event.target.classList.add('flipped');
         flippedCards.push(event.target);
+        checkForMatch();
     }
 }
 
@@ -38,7 +38,6 @@ function flipCard(event) {
 function checkForMatch() {
     if (flippedCards.length === 2) {
         if (flippedCards[0].querySelector('i').classList.value === flippedCards[1].querySelector('i').classList.value) {
-            console.log('congrats');
             matchedCards.push(flippedCards);
             setTimeout(function () {
                 //Adds matched class
@@ -47,14 +46,14 @@ function checkForMatch() {
                     card.removeEventListener('click', playGame);
                 }
                 //Resets flipped cards array
-                //  flippedCards.splice(0, 2);
+                setTimeout(function () {
+                    flippedCards.splice(0, 2);
+                }, 500);
                 moveCount++;
             }, 800);
-            flippedCards.splice(0, 2);
 
         } else {
             setTimeout(function () {
-                console.log('sorry');
                 //Adds non-matched class
                 for (card of flippedCards) {
                     card.classList.add('not-matched');
@@ -65,14 +64,17 @@ function checkForMatch() {
                         card.classList.remove('flipped', 'not-matched');
                     }
                     //Resets flipped cards array
-                    // flippedCards.splice(0, 2);
+                    setTimeout(function () {
+                        flippedCards.splice(0, 2);
+                    }, 500);
                     moveCount++;
+                    console.log('ran unmatched sequence');
                 }, 800);
             }, 800);
-            flippedCards.splice(0, 2);
 
         }
         moveCounter.innerText = moveCount;
+
     }
 }
 
@@ -81,7 +83,6 @@ function checkForWin() {
         setTimeout(function () {
             modal.classList.add('visible');
         }, 1800);
-        console.log('you won');
     }
 }
 
