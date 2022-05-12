@@ -113,6 +113,10 @@ h1 {
     visibility: visible;
 }
 
+.grow {
+    animation: .8s grow;
+}
+
 
 /* Keyframes */
 

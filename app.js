@@ -20,7 +20,7 @@ for (let i = 0; i < cardNode.length; i++) {
     cardNode[i].addEventListener('click', startTimer);
 }
 
-resetButton.addEventListener('click', resetGame);
+resetButton.addEventListener('click', resetButtonPressed);
 
 //Shuffle deck and set board
 setBoard(cardNode, shuffleDeck(cards));
@@ -179,3 +179,11 @@ function resetGame() {
     }, 500)
 }
 
+
+function resetButtonPressed() {
+    resetButton.classList.add('grow');
+    resetGame();
+    setTimeout(function () {
+        resetButton.classList.remove('grow');
+    }, 800);
+}
