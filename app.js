@@ -6,7 +6,7 @@ let moveCounter = document.querySelector('.moves'); //Span to show move count
 let stars = document.querySelectorAll('.fa-star'); //Node of all stars
 let modal = document.querySelector('.modal'); //Win Modal
 let timerText = document.querySelectorAll('.timer-text'); //Node for timer
-let modalStars = modal.querySelectorAll('.fa-star');
+let resetButton = document.querySelector('.fa-arrows-rotate');
 let moveCount = 0;
 let timerId;
 
@@ -19,6 +19,8 @@ for (let i = 0; i < cardNode.length; i++) {
     cardNode[i].addEventListener('click', playGame);
     cardNode[i].addEventListener('click', startTimer);
 }
+
+resetButton.addEventListener('click', resetGame);
 
 //Shuffle deck and set board
 setBoard(cardNode, shuffleDeck(cards));
@@ -144,3 +146,36 @@ function format(x) {
         return x;
     }
 }
+
+//Reset game to play again or reset
+function resetGame() {
+    moveCount = 0;
+    moveCounter.innerText = moveCount;
+    clearInterval(timerId);
+    flippedCards.splice(0, flippedCards.length);
+    matchedCards.splice(0, matchedCards.length);
+    timerText.forEach(text => {
+        text.innerText = '00:00';
+    });
+    stars.forEach(star => {
+        star.classList.remove('fa-regular');
+        star.classList.add('fa-solid');
+    });
+
+    //Reset Cards to covered
+    cardNode.forEach(card => {
+        card.removeEventListener('click', playGame);
+        card.classList.remove('flipped', 'matched');
+    });
+    //Reset event listeners and remove icons
+    setTimeout(function () {
+        cardNode.forEach(card => {
+            card.addEventListener('click', startTimer);
+            card.addEventListener('click', playGame);
+            card.querySelector('i').classList.value = 'fa-solid';
+            //console.log(card.querySelector('i').classList.value);
+        });
+        setBoard(cardNode, shuffleDeck(cards));
+    }, 500)
+}
+
