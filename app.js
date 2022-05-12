@@ -7,6 +7,7 @@ let stars = document.querySelectorAll('.fa-star'); //Node of all stars
 let modal = document.querySelector('.modal'); //Win Modal
 let timerText = document.querySelectorAll('.timer-text'); //Node for timer
 let resetButton = document.querySelector('.fa-arrows-rotate');
+let playAgainButton = document.querySelector('.play-again');
 let moveCount = 0;
 let timerId;
 
@@ -21,6 +22,7 @@ for (let i = 0; i < cardNode.length; i++) {
 }
 
 resetButton.addEventListener('click', resetButtonPressed);
+playAgainButton.addEventListener('click', playAgainPressed);
 
 //Shuffle deck and set board
 setBoard(cardNode, shuffleDeck(cards));
@@ -179,11 +181,16 @@ function resetGame() {
     }, 500)
 }
 
-
+//Reset button animation and reset game
 function resetButtonPressed() {
     resetButton.classList.add('grow');
     resetGame();
     setTimeout(function () {
         resetButton.classList.remove('grow');
     }, 800);
+}
+
+function playAgainPressed() {
+    resetGame();
+    modal.classList.remove('visible');
 }
